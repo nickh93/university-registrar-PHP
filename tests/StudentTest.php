@@ -85,13 +85,13 @@
         function testDeleteAll()
         {
             //Arrange
-                        // Create test Student #1
+                    // Create test Student #1
             $test_name_one = "Linda Ronstandt";
             $test_date_one = "2016-12-12";
             $test_id = null;
             $test_student_one = new Student($test_name_one, $test_date_one);
             $test_student_one->save();
-                        // Create test Student #1
+                    // Create test Student #1
             $test_name_two = "Pablo Picasso";
             $test_date_two = "2016-11-01";
             $test_id = null;
