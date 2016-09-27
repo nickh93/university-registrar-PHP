@@ -41,7 +41,29 @@
 
         function save()
         {
-            
+            $GLOBALS['DB']->exec("INSERT INTO students (name, date) VALUES ('{$this->getStudentName()}', '{$this->getDate()}')");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $returned_students = $GLOBALS['DB']->query("SELECT * FROM students;");
+            $students = [];
+            foreach($returned_students as $student)
+            {
+                $name = $student['name'];
+                $date = $student['date'];
+                $id = $student['id'];
+                $new_student = new Student($name, $date, $id);
+                array_push($students, $new_student);
+            }
+            return $students;
+
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM students;");
         }
     }
 
