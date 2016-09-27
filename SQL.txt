@@ -1,5 +1,9 @@
+$ /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
+
+//----------------------------- CREATE DATABASE ------------------------------//
 mysql> CREATE DATABASE registrar;
 
+//----------------------------- CREATE TABLES --------------------------------//
 mysql> CREATE TABLE courses (id serial PRIMARY KEY, course_name varchar (255), course_number varchar (255));
 
 mysql> CREATE TABLE students (id serial PRIMARY KEY, name varchar (255), date timestamp);
@@ -14,3 +18,32 @@ mysql> SHOW TABLES;
 | courses_students    |
 | students            |
 +---------------------+
+
+//---------------------------- DESCRIBE TABLES -------------------------------//
+
+mysql> DESCRIBE courses;
++---------------+---------------------+------+-----+---------+----------------+
+| Field         | Type                | Null | Key | Default | Extra          |
++---------------+---------------------+------+-----+---------+----------------+
+| id            | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+| course_name   | varchar(255)        | YES  |     | NULL    |                |
+| course_number | varchar(255)        | YES  |     | NULL    |                |
++---------------+---------------------+------+-----+---------+----------------+
+
+mysql> DESCRIBE students;
++-------+---------------------+------+-----+-------------------+-----------------------------+
+| Field | Type                | Null | Key | Default           | Extra                       |
++-------+---------------------+------+-----+-------------------+-----------------------------+
+| id    | bigint(20) unsigned | NO   | PRI | NULL              | auto_increment              |
+| name  | varchar(255)        | YES  |     | NULL              |                             |
+| date  | timestamp           | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
++-------+---------------------+------+-----+-------------------+-----------------------------+
+
+mysql> DESCRIBE courses_students;
++------------+---------------------+------+-----+---------+----------------+
+| Field      | Type                | Null | Key | Default | Extra          |
++------------+---------------------+------+-----+---------+----------------+
+| id         | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+| course_id  | int(11)             | YES  |     | NULL    |                |
+| student_id | int(11)             | YES  |     | NULL    |                |
++------------+---------------------+------+-----+---------+----------------+
