@@ -62,7 +62,7 @@
             $result = $test_student->getId();
 
             //Assert
-            $this->assertEquals(1, $result);
+            $this->assertEquals($test_id, $result);
         }
 
 
