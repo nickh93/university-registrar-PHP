@@ -18,9 +18,9 @@
             return $this->id;
         }
 
-        function setCourseName($course_name)
+        function setCourseName($input_course_name)
         {
-            $this->name = (string) strtoupper($course_name); //try this method
+            $this->name = (string) $course_name;
         }
 
         function getCourseName()
@@ -30,7 +30,12 @@
 
         function setCourseNumber($input_course_number)
         {
-            $this->course_number = (string) $input_course_number;
+            $this->course_number = (string) strtoupper($input_course_number);
+        }
+
+        function getCourseNumber()
+        {
+            return $this->course_number;
         }
 
 

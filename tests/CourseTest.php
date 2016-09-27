@@ -1,5 +1,7 @@
 <?php
 
+// function __construct($input_name, $input_course_number, $course_id = null)
+
     /**
     * @backupGlobals disabled
     * @backupStaticAttributes disabled
@@ -23,28 +25,32 @@
         function testGetCourseName()
         {
             //Arrange
-
+            $test_course_name = "Intro to Computer Science";
+            $test_course_number = "CSE101";
+            $test_course = new Course($test_course_name, $test_course_number);
 
             //Act
-
+            $result = $test_course->getCourseName();
 
             //Assert
-
+            $this->assertEquals($test_course_name, $result);
 
         }
 
-        // function tesGetCourseNumber()
-        // {
-        //     //Arrange
-        //
-        //
-        //     //Act
-        //
-        //
-        //     //Assert
-        //
-        //
-        // }
+        function tesGetCourseNumber()
+        {
+            //Arrange
+            $test_course_name = "Intro to Computer Science";
+            $test_course_number = "CSE101";
+            $test_course = new Course($test_course_name, $test_course_number);
+
+            //Act
+            $result = $test_course->getCourseName();
+
+            //Assert
+            $this->assertEquals($test_course_number, $result);
+
+        }
 
         // function testGetId()
         // {
