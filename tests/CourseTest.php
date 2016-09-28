@@ -93,6 +93,24 @@
 
         }
 
+        function test_find()
+        {
+            //Arrange
+            $name = "Math";
+            $course_number1 = "1105";
+            $name2 = "Biology";
+            $course_number2 = "2101";
+            $test_course = new Course($name, $course_number1);
+            $test_course->save();
+            $test_course2 = new Course($name2, $course_number2);
+            $test_course2->save();
+            //Act
+            $result = Course::find($test_course->getId());
+            //Assert
+            $this->assertEquals($test_course, $result);
+
+        }
+
     }
 
 ?>

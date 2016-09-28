@@ -5,14 +5,14 @@
         <div class="container">
 
             {% if courses is not empty %}
-                <p>Here are all the courses</p>
+                <h4>Current Courses</h4>
                 <ul>
                     {% for course in courses %}
                         <li><a href="courses/{{ course.getId }}">{{ course.getCourseNumber }} - {{ course.getCourseName }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}
-
+            <h4>Add a New Course</h4>
             <form action="/courses" method="post">
                 <label for="c_name">Course Name</label>
                 <input id="c_name" name="c_name" class="form-control" type="text">
@@ -24,7 +24,7 @@
             </form>
             <br>
             <form action="/delete_courses" method="post">
-                <button class="btn btn-danger" type="submit">Clear</button>
+                <button class="btn btn-danger" type="submit">Remove Courses</button>
             </form>
             <br>
             <p><a href="/">Home</a></p>

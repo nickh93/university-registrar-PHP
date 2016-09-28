@@ -31,5 +31,10 @@
         return $app["twig"]->render("courses.html.twig", array("courses" => Course::getAll()));
     });
 
+    $app->post("/delete_courses", function() use ($app) {
+        Course::deleteAll();
+        return $app["twig"]->render("courses.html.twig", array("courses" => Course::getAll()));
+    });
+
     return $app;
  ?>
