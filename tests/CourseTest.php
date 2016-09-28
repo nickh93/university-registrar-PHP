@@ -18,6 +18,7 @@
         protected function tearDown()
         {
             Student::deleteAll();
+            Course::deleteAll();
         }
 
         function testGetCourseName()
@@ -43,7 +44,7 @@
             $test_course = new Course($test_course_name, $test_course_number);
 
             //Act
-            $result = $test_course->getCourseName();
+            $result = $test_course->getCourseNumber();
 
             //Assert
             $this->assertEquals($test_course_number, $result);

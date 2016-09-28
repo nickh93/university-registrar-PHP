@@ -9,7 +9,7 @@
         function __construct($input_name, $input_course_number, $course_id = null)
         {
             $this->name = $input_name;
-            $this->number = $input_course_number;
+            $this->course_number = $input_course_number;
             $this->id = $course_id;
         }
 
@@ -40,7 +40,7 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO courses (course_name, course_number) VALUES ('{$this->getCourseName()}', '{$this->getCourseNumber()}')");
+            $GLOBALS['DB']->exec("INSERT INTO courses (course_name, course_number) VALUES ('{$this->getCourseName()}', '{$this->getCourseNumber()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
