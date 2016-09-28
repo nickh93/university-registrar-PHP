@@ -7,9 +7,9 @@
             <br>
             {% if students is not empty %}
                 <h4>Current students</h4>
-                <ul>
+                <ul class="list-group">
                     {% for student in students %}
-                        <li><a href="/students/{{ student.getId }}">{{ student.getStudentName }}</a></li>
+                        <li class="list-group-item"><a href="/students/{{ student.getId }}">{{ student.getStudentName }} - enrolled: {{ student.getDate }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}

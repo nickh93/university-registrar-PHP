@@ -57,5 +57,12 @@
         return $app["twig"]->render("students.html.twig", array("students" => Student::getAll()));
     });
 
+    /*----- Individual Student Logic -----*/
+
+    $app->get("/students/{id}", function($id) use ($app) {
+        $student = Student::find($id);
+        return $app["twig"]->render("student.html.twig", array("student" => $student, "courses" => $student->getCourses(), "all_courses" => Course::getAll()));
+    });
+
     return $app;
  ?>

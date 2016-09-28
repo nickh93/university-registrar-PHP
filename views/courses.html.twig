@@ -6,9 +6,9 @@
 
             {% if courses is not empty %}
                 <h4>Current Courses</h4>
-                <ul>
+                <ul class="list-group">
                     {% for course in courses %}
-                        <li><a href="courses/{{ course.getId }}">{{ course.getCourseNumber }} - {{ course.getCourseName }}</a></li>
+                        <li class="list-group-item"><a href="courses/{{ course.getId }}">{{ course.getCourseNumber }} - {{ course.getCourseName }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}

@@ -8,9 +8,9 @@
 
             {% if students is not empty %}
                 <p>Here are the students enrolled for this course</p>
-                <ul>
+                <ul class="list-group">
                     {% for student in students %}
-                        <li>{{ student.getName }}</li>
+                        <li class="list-group-item">{{ student.getName }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
