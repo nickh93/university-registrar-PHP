@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    {% include "partials/header.html" %}
+    <body>
+        <div class="container">
+
+            <h1>{{ course.getCourseName }}</h1>
+
+            {% if students is not empty %}
+                <p>Here are the students enrolled for this course</p>
+                <ul>
+                    {% for student in students %}
+                        <li>{{ student.getName }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <h4>Add a student to this course</h4>
+
+            <form action="/add_students" method="post">
+                <input id="course_id" name="course_id" type="hidden" value="{{ course.getId }}">
+                <label for="student_id">Select a student</label>
+                <select id="student_id" name="student_id" type="text">
+                    {% for student in students %}
+                        <option class="form-control" value="{{ student.getId }}"> {{ student.getStudentName }} </option>
+                    {% endfor %}
+                </select>
+                <br>
+                <button class="btn btn-success" type="submit">Add student</button>
+            </form>
+
+            <p><a href="/courses/{{ course.getId }}/edit">Edit this course></a></p>
+
+            <p><a href='/'>Home</a></p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    {% include "partials/header.html" %}
+    <body>
+        <div class="container">
+
+            <br>
+            {% if students is not empty %}
+                <h4>Current students</h4>
+                <ul>
+                    {% for student in students %}
+                        <li><a href="/students/{{ student.getId }}">{{ student.getStudentName }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <br>
+            <h4>Add a New Student</h4>
+            <form action="/students" method="post">
+                <label for="s_name">Student Name</label>
+                <input id="s_name" name="s_name" class="form-control" type="text">
+                <br>
+                <label for="s_date">Student Enrollment Date</label>
+                <input id="s_date" name="s_date" class="form-control" type="date">
+                <br>
+                <button class="btn btn-success" type="submit">Add Student</button>
+            </form>
+            <br>
+            <form action="/delete_students" method="post">
+                <button class="btn btn-danger" type="submit">Remove Students</button>
+            </form>
+            <br>
+            <p><a href="/">Home</a></p>
+
+        </div>
+    </body>
+</html>

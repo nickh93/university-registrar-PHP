@@ -19,6 +19,8 @@
         return $app["twig"]->render("index.html.twig");
     });
 
+    /*----------Courses Logic-----------*/
+
     $app->get("/courses", function() use ($app) {
         return $app["twig"]->render("courses.html.twig", array("courses" => Course::getAll()));
     });
@@ -34,6 +36,25 @@
     $app->post("/delete_courses", function() use ($app) {
         Course::deleteAll();
         return $app["twig"]->render("courses.html.twig", array("courses" => Course::getAll()));
+    });
+
+    /*----------Students Logic-----------*/
+
+    $app->get("/students", function() use ($app) {
+        return $app["twig"]->render("students.html.twig", array("students" => Student::getAll()));
+    });
+
+    $app->post("/students", function() use ($app) {
+        $student_name = $_POST["s_name"];
+        $student_edate = $_POST["s_date"];
+        $new_student = new Student($student_name, $student_edate);
+        $new_student->save();
+        return $app["twig"]->render("students.html.twig", array("students" => Student::getAll()));
+    });
+
+    $app->post("/delete_students", function() use ($app) {
+        Student::deleteAll();
+        return $app["twig"]->render("students.html.twig", array("students" => Student::getAll()));
     });
 
     return $app;
