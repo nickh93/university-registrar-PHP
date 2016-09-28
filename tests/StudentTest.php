@@ -107,7 +107,7 @@
 
         }
 
-        function test_find()
+        function testFind()
         {
             //Arrange
             $name = "Sam";
@@ -123,6 +123,52 @@
             //Assert
             $this->assertEquals($test_student, $result);
 
+        }
+
+        function testGetCourses()
+        {
+            //Arrange
+            $test_name = "Intro to Computer Science";
+            $test_course_number = "CS101";
+            $test_course = new Course($test_name, $test_course_number);
+            $test_course->save();
+
+            $test_name2 = "Data Structures";
+            $test_course_number2 = "DS201";
+            $test_course2 = new Course($test_name2, $test_course_number2);
+            $test_course2->save();
+
+            $test_student_name = "Samon";
+            $test_enrollment_date = "2014/09/03";
+            $test_student = new Student($test_student_name, $test_enrollment_date);
+            $test_student->save();
+
+            //Act
+            $test_student->addCourse($test_course);
+            $test_student->addCourse($test_course2);
+
+            //Assert
+            $this->assertEquals($test_student->getCourses(), [$test_course, $test_course2]);
+        }
+
+        function testAddCourse()
+        {
+            //Arrange
+            $test_name = "Intro to Computer Science";
+            $test_course_number = "CS101";
+            $test_course = new Course($test_name, $test_course_number);
+            $test_course->save();
+
+            $test_student_name = "Samon";
+            $test_enrollment_date = "2014/09/03";
+            $test_student = new Student($test_student_name, $test_enrollment_date);
+            $test_student->save();
+
+            //Act
+            $test_student->addCourse($test_course);
+
+            //Assert
+            $this->assertEquals($test_student->getCourses(), [$test_course]);
         }
 
     }
