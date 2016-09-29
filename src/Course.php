@@ -20,7 +20,7 @@
 
         function setCourseName($input_course_name)
         {
-            $this->name = (string) $course_name;
+            $this->name = (string) $input_course_name;
         }
 
         function getCourseName()

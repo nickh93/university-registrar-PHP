@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    {% include "partials/header.html" %}
+    <body>
+        <div class="container">
+            <h1>Update the {{ student.getStudentName }}</h1>
+
+
+            <form action="/students/{{ student.getId }}" method="post">
+              <input name="_method" type="hidden" value="patch">
+
+              <label for="name">Rename your student:</label>
+              <input id="name" name="name" type="text">
+
+              <label for="s_date">New enrollment date:</label>
+              <input id="s_date" name="s_date" type="date">
+
+              <button type="submit">Update</button>
+            </form>
+
+            <form action="/students/{{ student.getId }}" method="post">
+                <input name="_method" type="hidden" value="delete">
+
+                <button type="submit">Delete this student</button>
+            </form>
+        </div>
+    </body>
+</html>
