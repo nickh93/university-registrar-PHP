@@ -62,7 +62,9 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM courses;");
+            $GLOBALS['DB']->exec("DELETE FROM courses_students");
         }
+
         static function find($search_id)
         {
             $found_course = null;
@@ -74,8 +76,8 @@
                 {
                     $found_course = $course;
                 }
-                return $found_course;
             }
+            return $found_course;
         }
 
     }

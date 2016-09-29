@@ -64,5 +64,12 @@
         return $app["twig"]->render("student.html.twig", array("student" => $student, "courses" => $student->getCourses(), "all_courses" => Course::getAll()));
     });
 
+    $app->post("/add_courses", function() use ($app) {
+        $course = Course::find($_POST["course_id"]);
+        $student = Student::find($_POST["student_id"]);
+        $student->addCourse($course);
+        return $app["twig"]->render("student.html.twig", array("student" => $student, "students" => Student::getAll(), "courses" => $student->getCourses(), "all_courses" => Course::getAll()));
+    });
+
     return $app;
  ?>
