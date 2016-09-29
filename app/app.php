@@ -38,6 +38,19 @@
         return $app["twig"]->render("courses.html.twig", array("courses" => Course::getAll()));
     });
 
+    /*----- Individual Course Logic -----*/
+    $app->get("/courses/{id}", function($id) use ($app) {
+        $course = Course::find($id);
+        return $app['twig']->render("course.html.twig", array("course" => $course, "students" => $course->getStudents(), "all_students" => Student::getAll()));
+    });
+
+    $app->post("/add_students", function() use ($app) {
+        $student = Student::find($_POST['student_id']);
+        $course = Course::find($_POST['course_id']);
+        $course->addStudent($student);
+        return $app["twig"]->render("course.html.twig", array("course" => $course, "courses" => Course::getAll(), "students" => $course->getStudents(), "all_students" => Student::getAll()));
+    });
+
     /*----------Students Logic-----------*/
 
     $app->get("/students", function() use ($app) {

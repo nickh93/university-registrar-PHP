@@ -45,24 +45,23 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($new_name, $new_date) {
+            $GLOBALS['DB']->exec("UPDATE students SET name = '{$new_name}', date = '{$new_date}' WHERE id = {$this->getId()};");
+
+            $this->setStudentName($new_name);
+            $this->setDate($new_date);
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM students WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM courses_students WHERE student_id = {$this->getId()};");
+        }
+
         function addCourse($course)
         {
            $GLOBALS['DB']->exec("INSERT INTO courses_students (course_id, student_id) VALUES ({$course->getId()}, {$this->getId()});");
         }
-
-        // $returned_courses = $GLOBALS['DB']->query("SELECT courses.* FROM students
-        //     JOIN courses_students ON (courses_students.student_id = students.id)
-        //     JOIN courses ON (courses.id = courses_students.course_id)
-        //     WHERE students.id = {$this->getId()};");
-        //     $courses = array();
-        //     foreach ($returned_courses as $course)
-        //     {
-        //         $id = $course['id'];
-        //         $name = $course['name'];
-        //         $number = $course['number'];
-        //         $new_course = new Course($id, $name, $number);
-        //         array_push($courses, $new_course);
-        // }
 
         function getCourses()
         {
@@ -102,7 +101,6 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM students;");
-            $GLOBALS['DB']->exec("DELETE FROM courses_students");
         }
 
         static function find($search_id)

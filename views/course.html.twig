@@ -10,7 +10,7 @@
                 <p>Here are the students enrolled for this course</p>
                 <ul class="list-group">
                     {% for student in students %}
-                        <li class="list-group-item">{{ student.getName }}</li>
+                        <li class="list-group-item">{{ student.getStudentName }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -20,16 +20,16 @@
             <form action="/add_students" method="post">
                 <input id="course_id" name="course_id" type="hidden" value="{{ course.getId }}">
                 <label for="student_id">Select a student</label>
-                <select id="student_id" name="student_id" type="text">
-                    {% for student in students %}
+                <select id="student_id" class="form-control" name="student_id" type="text">
+                    {% for student in all_students %}
                         <option class="form-control" value="{{ student.getId }}"> {{ student.getStudentName }} </option>
                     {% endfor %}
                 </select>
                 <br>
                 <button class="btn btn-success" type="submit">Add student</button>
             </form>
-
-            <p><a href="/courses/{{ course.getId }}/edit">Edit this course></a></p>
+            <br>
+            <p><a href="/courses/{{ course.getId }}/edit">Edit this course</a></p>
 
             <p><a href='/'>Home</a></p>
         </div>
